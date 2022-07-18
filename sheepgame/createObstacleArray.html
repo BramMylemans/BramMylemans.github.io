@@ -1,0 +1,62 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>SVG convertor</title>
+
+<body style="height: 100%; overflow: hidden" ;>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+
+    <object id="obstaclesSvg" data="map2.svg" type="image/svg+xml"></object>
+
+    <script>
+
+        window.addEventListener("load", function () {
+            
+            var obstaclesSvg = document.createElementNS('img/obstacles.svg', 'svgObject');
+            var svgObject = document.getElementById('obstaclesSvg').contentDocument;
+           
+            let obstCircles = Array.from(svgObject.querySelectorAll("circle"));
+            document.write("let obstCircles = [<br>");
+            for (let i = 0; i < obstCircles.length; i++) {
+                document.write("&nbsp;&nbsp;[");
+                document.write(Math.round(obstCircles[i].getAttribute("cx")));
+                document.write(", ");
+                document.write(Math.round(obstCircles[i].getAttribute("cy")));
+                document.write(", ");
+                document.write(Math.round(obstCircles[i].getAttribute("r")));
+                document.write("]");
+                if (i < obstCircles.length-1) document.write(",");
+                document.write("<br>");
+            }
+            document.write("];<br><br>");
+
+            let obstLines = Array.from(svgObject.querySelectorAll("line"));
+            document.write("let obstLines = [<br>");
+            for (let i = 0; i < obstLines.length; i++) {
+                document.write("&nbsp;&nbsp;[");
+                document.write(Math.round(obstLines[i].getAttribute("x1")));
+                document.write(", ");
+                document.write(Math.round(obstLines[i].getAttribute("y1")));
+                document.write(", ");
+                document.write(Math.round(obstLines[i].getAttribute("x2")));
+                document.write(", ");
+                document.write(Math.round(obstLines[i].getAttribute("y2")));
+                document.write("]");
+                if (i < obstLines.length-1) document.write(",");
+                document.write("<br>");
+            }
+            document.write("];");
+
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>
