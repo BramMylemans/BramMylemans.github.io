@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/custom.css">
+    <title>Chess</title>
+</head>
+
+<body onload="setupGame(); resize(); loadSprites()" onresize="resize()">
+    <div id="container">
+        <div id="board">
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <!--  COMPUTER VS COMPUTER -->
+        <div class="main" id="setupGame" style="display:inline;">
+            <h1>AI vs AI</h1>
+            <table>
+                <tr>
+                    <td style="width:200px">
+                        <h3>White</h3>
+                        <label for="engine0">Engine</label>
+                        <input type="text" id="engine0" spellcheck="false" value="engine.js" title="Engine for white">
+                        <label for="ply_brute0">Brute force</label>
+                        <select id="ply_brute0" title="Brute force search depth in half-moves">
+                            <option value="2">2 ply</option>
+                            <option value="3">3 ply</option>
+                            <option selected value="4">4 ply</option>
+                            <option value="5">5 ply</option>
+                            <option value="6">6 ply</option>
+                            <option value="7">7 ply</option>
+                            <option value="8">8 ply</option>
+                        </select>
+                        <label for="ply_quiet0">Quiescent</label>
+                        <select id="ply_quiet0" title="Quiescent search depth in half-moves">
+                            <option selected value="0">no deepening</option>
+                            <option value="1">+1 ply</option>
+                            <option value="2">+2 ply</option>
+                            <option value="3">+3 ply</option>
+                            <option value="4">+4 ply</option>
+                            <option value="5">+5 ply</option>
+                            <option value="6">+6 ply</option>
+                            <option value="7">+7 ply</option>
+                            <option value="8">+8 ply</option>
+                            <option value="9">+9 ply</option>
+                            <option value="10">+10 ply</option>
+                            <option value="11">+11 ply</option>
+                            <option value="12">+12 ply</option>
+                            <option value="13">+13 ply</option>
+                            <option value="14">+14 ply</option>
+                            <option value="15">+15 ply</option>
+                            <option value="16">+16 ply</option>
+                            <option value="17">+17 ply</option>
+                            <option value="18">+18 ply</option>
+                            <option value="19">+19 ply</option>
+                            <option value="20">+20 ply</option>
+                        </select>
+                        <label for="nodes0">Target #nodes</label>
+                        <select id="nodes0" title="Adjust depth dynamically (overrides ply settings)">
+                            <option selected value="-1">Fixed depth</option>
+                            <option value="100000">100k</option>
+                            <option value="200000">200k</option>
+                            <option value="500000">500k</option>
+                            <option value="1000000">1m</option>
+                            <option value="5000000">5m</option>
+                            <option value="10000000">10m</option>
+                        </select>
+                    </td>
+                    <td style="width:200px">
+                        <h3>Black</h3>
+                        <label for="engine1">Engine</label>
+                        <input type="text" id="engine1" spellcheck="false" value="engine1.js" title="Engine for black">
+                        <label for="ply_brute1">Brute force</label>
+                        <select id="ply_brute1" title="Brute force search depth in half-moves">
+                            <option value="2">2 ply</option>
+                            <option value="3">3 ply</option>
+                            <option selected value="4">4 ply</option>
+                            <option value="5">5 ply</option>
+                            <option value="6">6 ply</option>
+                            <option value="7">7 ply</option>
+                            <option value="8">8 ply</option>
+                        </select>
+                        <label for="ply_quiet1">Quiescent</label>
+                        <select id="ply_quiet1" title="Quiescent search depth in half-moves">
+                            <option selected value="0">no deepening</option>
+                            <option value="1">+1 ply</option>
+                            <option value="2">+2 ply</option>
+                            <option value="3">+3 ply</option>
+                            <option value="4">+4 ply</option>
+                            <option value="5">+5 ply</option>
+                            <option value="6">+6 ply</option>
+                            <option value="7">+7 ply</option>
+                            <option value="8">+8 ply</option>
+                            <option value="9">+9 ply</option>
+                            <option value="10">+10 ply</option>
+                            <option value="11">+11 ply</option>
+                            <option value="12">+12 ply</option>
+                            <option value="13">+13 ply</option>
+                            <option value="14">+14 ply</option>
+                            <option value="15">+15 ply</option>
+                            <option value="16">+16 ply</option>
+                            <option value="17">+17 ply</option>
+                            <option value="18">+18 ply</option>
+                            <option value="19">+19 ply</option>
+                            <option value="20">+20 ply</option>
+                        </select>
+                        <label for="nodes1">Target #nodes</label>
+                        <select id="nodes1" title="Adjust depth dynamically (overrides ply settings)">
+                            <option selected value="-1">Fixed depth</option>
+                            <option value="100000">100k</option>
+                            <option value="200000">200k</option>
+                            <option value="500000">500k</option>
+                            <option value="1000000">1m</option>
+                            <option value="5000000">5m</option>
+                            <option value="10000000">10m</option>
+                        </select>
+                    </td>
+                </tr>
+
+            </table>
+
+            <label for="fen">Starting position</label>
+            <input type="text" id="fen" spellcheck="false" placeholder="Use FEN notation, leave blank for normal game"
+                title="Starting position in FEN format (optional)" oninput="updateBoard()"><br>
+            <div class="warning" id="invalidFenString">Invalid FEN string (<a
+                    href="https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation" target="_blank">more
+                    info</a>)</div>
+
+
+            <div class="nav">
+                <hr>
+                <button class="button3" onClick="startGame()">Play!</button>
+
+            </div>
+        </div>
+
+        <!--  INGAME -->
+        <div class="main" id="ingame" style="display:none;">
+            <h1 id="header">White's turn</h1>
+            <table>
+                <tr>
+                    <td>
+                        <p id="whiteTimer">White</p>
+                    </td>
+                    <td style="text-align:right;">
+                        <p id="blackTimer" class="dim">Black</p>
+                    </td>
+                </tr>
+            </table>
+            <progress value="0" max="1" id="progress"></progress>
+            <p id="description"></p>
+
+            <div class="scrollableOuter">
+                <hr>
+                <button id="log_pgn" class="tinyButton selected" onClick="setLogMode('pgn')"
+                    title="View log">COORDINATES</button>
+                <button id="log_fen" class="tinyButton" onClick="setLogMode('fen')"
+                    title="View log in FEN format">FEN</button>
+                <button id="log_ai" class="tinyButton" onClick="setLogMode('ai')" title="View AI statistics">AI
+                    LOG</button>
+                <button class="tinyButton" onClick="copyLog()" title="Copy log to clipboard">COPY</button>
+                <div class="scrollableInner" id="logContainer">
+                    <ol id="log"></ol>
+                </div>
+            </div>
+            <div class="nav" id="inGameNav">
+                <hr>
+                <button class="button3" id="resign" onClick="resign()" title="End game">Abort</button>
+            </div>
+            <div class="nav" id="endGameNav">
+                <hr>
+                <button class="button3" onClick="setupGame()">New game</button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="main_dojo.js"></script>
+<script src="transcode.js"></script>
+
+</html>

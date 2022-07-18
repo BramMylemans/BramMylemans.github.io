@@ -1,0 +1,60 @@
+SIMPEL IN TE BOUWEN:
+===================
+- randomize(amt): bij evaluate kleine random waarde bijtellen 
+
+
+deepscans
+========
+OFWEL:
+param: # deepscans      voordeel: vast aantal scans
+bijhouden meest belovende endnodes
+na primaire scan:
+beste (x) aantal nodes dieper scannen
+indien maar 1 root branch kandidaat, scan afbreken
+
+OFWEL:
+param: TRESHOLD         voordeel: eenvoudig   nadeel: onvoorspelbaar qua rekentijd
+bij elke voorlaatste node:
+indien score > TRESHOLD: dieper scannen (is eigenlijk quiescence search)
+
+TRESHOLD DYNAMISCH? (eg bestscore -100)
+
+OPGEPAST bij vergelijken scans van verschillende diepte! in elk geval steeds ***EVEN aantal nodes*** toevoegen
+
+
+OFWEL:
+meestbelovende X aantal nodes van elke main branch uitdiepen - !!
+
+
+APARTE EVALUATIE (quiet eval)
+wanneer er niet meteen goeie zetten naar voren komen uit normale evaluatie:
+evolueren op positie: 
+- vrijheid lopers en torens en paarden
+- waarde bedreigde stukken (van beide partijen)
+- doubled pawns
+
+(eventueel gewoon in evaluatieroutine? indien geen captures, subtielere evaluatie)
+
+WAARDEN evaluatie etc tunen in een soort DOJO? twee engine.js tegen elkaar.
+
+
+CONCEPT:
+op ply 1 2, 3 of 4 positionele bonus (=#validmoves) voor vrije moves. Achteraf bijtellen bij score van diepere plys
+
+
+
+Dieper searchen indien weinig nodes
+===================================
+Iterative deepening?
+
+Of simpel:
+-> 4 ply pre search (60ms met cutoff, 460ms zonder) 
+-> nodes tellen en adh daarvan ply inschatten
+-> ook level 0 sorting op deze basis?
+-> kan ms ook worden gebruik voor progress indicator?
+
+Openings DB?
+============
+
+
+

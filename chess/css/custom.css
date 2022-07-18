@@ -1,0 +1,302 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", "Roboto", sans-serif;
+  font-weight: 300;
+  color: #edf0f3;
+  user-select: none;
+  overflow: hidden;
+  background-color: #11191f;
+}
+
+table {
+  width: 100%;
+}
+
+
+/* divs */
+
+.dialog {
+  display: none;
+  text-align: center;
+  width: 300px;
+  height: 120px;
+  padding: 10px;
+  position: absolute;
+  z-index: 100;
+  border-radius: 3px;
+  background-color: #11191f;
+  box-shadow: 10px 10px 10px #11191f;
+}
+
+.main {
+  margin-left: 100px;
+  background-color: #11191f;
+  width: 400px;
+  position: absolute;
+  height: 100%;
+  box-sizing: border-box;
+  top: 0;
+}
+
+#container {
+  position: absolute;
+  top: 40px;
+}
+
+#board {
+  float: left;
+  border: 10px solid black;
+  background-color: black;
+}
+
+.nav {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.scrollableOuter {
+  height: calc(100% - 250px);
+  position: absolute;
+  top: 170px;
+  width: 400px;
+}
+
+.scrollableOuter2 {
+  height: calc(100% - 340px);
+  position: absolute;
+  top: 360px;
+  width: 400px;
+}
+
+.scrollableInner {
+  height: calc(100% - 60px);
+  overflow-y: auto;
+  scrollbar-color: #426076 black;
+}
+
+
+
+/* SCROLL */
+
+::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+  background: black;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #426076;
+  border-radius: 1px;
+  -webkit-border-radius: 1px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+
+/* form */
+
+input, button, select {
+  width: 100%;
+  padding: 6px;
+  background-color: #11191f;
+  border: 1px solid #374956;
+  color: #edf0f3;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+progress {
+  visibility: none;
+  display:block;
+  border: 1px solid black;
+  background-color: black;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  height: 5px;
+}
+
+progress::-webkit-progress-bar {
+  background-color: black;
+}
+
+progress::-webkit-progress-value {
+  background: #1095c1;
+  /* chrome */
+}
+
+progress::-moz-progress-bar {
+  background-color: #1095c1;
+  /* firefox */
+}
+
+button, select, input {
+  font-family: system-ui, -apple-system, "Segoe UI", "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+select:hover {
+  border: 1px solid #1095c1;
+  transition-duration: 0.4s;
+}
+
+input {
+  user-select: text;
+}
+
+button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline;
+  width: 130px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #60b0ca;
+  color: black;
+  font-size: 16px;
+  transition-duration: 0.4s;
+}
+
+button:hover {
+  background-color: white;
+}
+
+button:disabled {
+  background-color: #426076;
+  cursor: initial;
+
+}
+
+.button1 {
+  width: 130px;
+}
+
+.button2 {
+  width: 260px;
+}
+
+.button3 {
+  width: 100%;
+}
+
+.promotionButton {
+  display: inline;
+  width: 70px;
+  height: 70px;
+  border-radius: 3px;
+  margin: 0;
+}
+
+.tinyButton {
+  width: auto;
+  border-radius: 0px;
+  border: 0;
+  font-size: 10px;
+  padding: 1px 3px 2px 3px;
+  background-color: #426076;
+  font-weight: 500;
+}
+
+.tinyButton.selected {
+  background-color: white;
+}
+
+[type=checkbox],
+[type=radio] {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  color: #1095c1;
+}
+
+::placeholder {
+  color: #426076;
+}
+
+label {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+}
+
+/* typography */
+
+hr {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  border: 0px;
+  height: 1px;
+  background: #000000;
+}
+
+p {
+  font-size: 20px;
+  font-weight: 300;
+  padding-bottom: 20px;
+}
+
+#description{
+  margin-top:-40px;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 300;
+  padding-bottom: 20px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: 300;
+  padding-bottom: 15px;
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 20px;
+  font-weight: 300;
+  padding-bottom: 15px;
+}
+
+.dim {
+  color: #426076;
+}
+
+ol li {
+  color: #426076;
+  list-style-position: inside;
+  user-select: text;
+}
+
+ol li:last-child {
+  color: white;
+}
+
+.warning {
+  margin-top: 3px;
+  font-style: italic;
+  color: crimson;
+  display: none;
+}
+
+.warning a {
+  color: crimson;
+}
+
+#endGameNav {
+  display: none;
+}
+
+#gameResult {
+  display: none;
+}
